@@ -1,0 +1,43 @@
+body {
+    color: whitesmoke;
+    background-color: grayscale($color: #240340);
+    height: 100%;
+}
+html,body, #root{
+height: 100vh;
+
+}
+.nav{
+    &__link{
+        text-decoration: none;
+        justify-content: space-between;
+        color: aliceblue;
+}}
+#root{
+    display: flex;
+    flex-direction: column;
+}
+#Header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #26004D; //#04164A;
+    box-shadow: 0 2px 4px rgba($color: #000000, $alpha: 1.0);
+    padding: 1rem;
+}
+
+#Header > h1{
+    justify-content: center;
+
+}   
+#Header > nav > a{ 
+    margin-left: 1rem;
+}
+#Logo-Villanas{
+    max-width: 150px;
+}
+
+#root > Main{
+flex-grow: 1;
+}

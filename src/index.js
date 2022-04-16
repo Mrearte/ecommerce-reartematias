@@ -1,8 +1,10 @@
 import React from "react" 
 import ReactDOM from "react-dom"
-function App(){
-    return "HOla Mundo"
-}
+import App from "./App.js"
+import "./estilos.scss"
 
 
-ReactDOM.render(<App/>, document.getElementById("root"))
+
+const root = ReactDOM.createRoot(document.getElementById("root"))
+
+root.render(<App/>)
