@@ -1,4 +1,7 @@
-const Nav = (props) => {
+import CartWidget from "./CartWidget"
+
+
+const NavBar = (props) => {
   //console.table(props.link)
   //console.log(props.id)
   //console.log(props.nombre)
@@ -6,7 +9,7 @@ const Nav = (props) => {
   if(props.footer){
     return (
       <nav className="nav">
-        <a href="#" className="nav__link">link 1</a>
+        <a href="#" className="nav__link"><CartWidget/></a>
         <a href="#" className="nav__link">link 2</a>
         <a href="#" className="nav__link">link 3</a>
       </nav>
@@ -15,7 +18,7 @@ const Nav = (props) => {
     return(
       <nav className="nav">
         <a href="#">{props.nombre}</a>
-        <a href="#" className="nav__link">link 1</a>
+        <a href="#" className="nav__link"><CartWidget/></a>
         <a href="#" className="nav__link">link 2</a>
         <a href="#" className="nav__link">link 3</a>
       </nav>
@@ -23,4 +26,4 @@ const Nav = (props) => {
   }
 }
 
-export default Nav
+export default NavBar

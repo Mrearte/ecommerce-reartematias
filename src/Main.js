@@ -1,4 +1,4 @@
-import Container from "./Container"
+import ItemListContainer from "./components/ItemListContainer"
 
 const Main = ({ children, nombre }) => {
 
@@ -9,12 +9,12 @@ const Main = ({ children, nombre }) => {
 
   return (
     <main>
-      Main, bienvenido {nombre}
+      bienvenido {nombre}
       {children}
+      <br></br>
       <span className="material-icons">
         shopping_cart
       </span>
-      <Container />
     </main>
   )
 }

@@ -40,4 +40,16 @@ height: 100vh;
 
 #root > Main{
 flex-grow: 1;
+
+}
+
+
+//////////////////////////<ItemListContainer/>/////////////////
+
+#ItemListContainer{
+    color: yellow;
+    list-style: none;
+    border: 1px solid gray;
+    margin: auto;
+    padding: 1rem;
 }
