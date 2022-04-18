@@ -1,11 +1,7 @@
-import Presentacional from "../Presentacional"
-const greeting = [ "pantalon", "remeras", "medias", "vestidos",  "camperas",  "buzos"]
-
-const ItemListContainer = ()=>{
+const ItemListContainer = ({greeting})=>{
 
     return (
-            <Presentacional greeting={greeting}
-            />
+            <>{greeting}</>
             
     )
 }
