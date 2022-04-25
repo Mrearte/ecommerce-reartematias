@@ -9,7 +9,7 @@ const App = () => {
     <>
       <Header/>
       <ItemListContainer greeting = "Ropa Listado"/>
-      <Main nombre="Pedro">
+      <Main >
       
       </Main>
       <Footer />

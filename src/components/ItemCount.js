@@ -2,23 +2,29 @@
 import {useState} from "react"
 
 
-const ItemCount  = (props) => {
-    const [contador,setContador]  = useState(parseInt(props.initial))
+const ItemCount  = ({stock, initial, onAdd}) => {
+    const [contador,setContador]  = useState(parseInt(initial))
 
 
     const BtnSuma = () =>{
-            if (contador >= props.stock) {
+            if (contador >= stock) {
                 console.log("Supera el stock permitido")
         } else {
             setContador(contador + 1)
             console.log(contador)
         }
     }
-    const BtnResta = () =>{
 
+    const BtnResta = () =>{
         setContador(contador - 1)
+        
     }
-    console.log(props)
+
+
+    const BtnConfirma = () => {
+        onAdd(contador)
+        console.log(contador)
+    }
     return (
 
         <div id = "Botonera">
@@ -28,7 +34,7 @@ const ItemCount  = (props) => {
                 <input type="number" name="" id="" value = {contador}/>
                 <button onClick={BtnSuma} id ="BtnSuma"> + </button>
             </div>
-            <button>Agregar al carrito</button>
+            <button onClick={BtnConfirma} >Agregar al carrito</button>
         </div>        
     )
 
