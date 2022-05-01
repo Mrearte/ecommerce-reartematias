@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import ItemCount from "./ItemCount"
-import ItemList from "./ItemList"
+// import ItemCount from "./ItemCount"
+import ItemDetail from "./ItemDetail"
+import Items from "./Items"
  
 const ProductsDatabase = [
     {
@@ -16,12 +17,14 @@ const ProductsDatabase = [
         price: 25,
         pictureUrl:"../imagenes/productos/producto1.png",
         description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
+
     }, 
     {
         id: 3, 
         title: 'Product 3', 
         price: 53,
-        pictureUrl:"../imagenes/productos/producto1.png",description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
+        pictureUrl:"../imagenes/productos/producto1.png",
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
 
     }, 
     {
@@ -38,11 +41,17 @@ const ProductsDatabase = [
         price: 959,
         pictureUrl:"../imagenes/productos/producto1.png",
         description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
+        
     }, 
 ]
 
 
-const ItemListContainer = ({greeting})=>{
+const ItemDetailContainer = ({greeting})=>{
+
+    const getItem = ((get) => {
+        const allItems = Items
+        console.log(allItems)
+    })    
     const[cargando,setcargando] = useState([])
 
     useEffect( () => {
@@ -67,10 +76,8 @@ const ItemListContainer = ({greeting})=>{
     {
         return (
                 <>
-                {/* {greeting} */}
-                {/* <ItemCount stock = "5" initial = "1" onAdd = {onAdd}  /> */}
-                
-                <ItemList items = {ProductsDatabase} />
+
+                <ItemDetail items = {ProductsDatabase} />
                 
                 
                 </>
@@ -79,7 +86,7 @@ const ItemListContainer = ({greeting})=>{
     }
 }
 
-export default ItemListContainer
+export default ItemDetailContainer
 
 
 
