@@ -1,4 +1,5 @@
 import CartWidget from "./CartWidget"
+import {Link,NavLink} from "react-router-dom"
 
 
 const NavBar = (props) => {
@@ -9,18 +10,17 @@ const NavBar = (props) => {
   if(props.footer){
     return (
       <nav className="nav">
-        <a href="#" className="nav__link"><CartWidget/></a>
-        <a href="#" className="nav__link">link 2</a>
-        <a href="#" className="nav__link">link 3</a>
+        <Link to="#" className="nav__link"><CartWidget/></Link>
+        <Link to="/Login" className="nav__link">Login</Link>
+        <Link to="Registrarte" className="nav__link">Registrarte</Link>
       </nav>
     )
   }else{
     return(
       <nav className="nav">
-        <a href="#">{props.nombre}</a>
-        <a href="#" className="nav__link"><CartWidget/></a>
-        <a href="#" className="nav__link">link 2</a>
-        <a href="#" className="nav__link">link 3</a>
+        <Link to="#" className="nav__link"><CartWidget/></Link>
+        <Link to="/category/electronicos" className="nav__link">electronicos</Link>
+        <Link to="/category/textil" className="nav__link">textil</Link>
       </nav>
     )
   }

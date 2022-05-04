@@ -4,14 +4,14 @@ const ItemList = ({items})=>{
 
     // console.log(items, 'esto viene de items')
     return (
-            <div id = 'ItemList'> 
-            {
-                items.map((item)=>{
-                    return <Items id = {item.id} title = {item.title} price = {item.price} pictureUrl ={item.pictureUrl} key = {item.id} description={item.description}/>
-                })
-            }       
-            </div>
-            
+        <div id = 'ItemList'> 
+        {
+            items.map((item)=>{
+                // return <Items id = {item.id} title = {item.title} price = {item.price} pictureUrl ={item.pictureUrl} key = {item.id} description={item.description}/>
+            return <Items item = {item}/>
+            })
+        }       
+        </div>
     )
 }
 

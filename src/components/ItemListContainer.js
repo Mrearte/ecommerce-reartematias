@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import ItemCount from "./ItemCount"
+import { useParams } from "react-router-dom"
 import ItemList from "./ItemList"
  
 const ProductsDatabase = [
@@ -44,6 +44,7 @@ const ProductsDatabase = [
 
 const ItemListContainer = ({greeting})=>{
     const[cargando,setcargando] = useState([])
+    const {nombreCategoria} = useParams()
 
     useEffect( () => {
         const pedido = new Promise((res) =>{
@@ -55,9 +56,10 @@ const ItemListContainer = ({greeting})=>{
         pedido
         .then(()=>{
             console.log("Termine el pedido bien!")
-            setcargando()
+            setcargando(false)
+
         })
-    },[])
+    },[nombreCategoria])
 
     if (cargando){
         return (

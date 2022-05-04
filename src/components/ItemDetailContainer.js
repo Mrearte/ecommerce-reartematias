@@ -47,12 +47,8 @@ const ProductsDatabase = [
 
 
 const ItemDetailContainer = ({greeting})=>{
-
-    const getItem = ((get) => {
-        const allItems = Items
-        console.log(allItems)
-    })    
-    const[cargando,setcargando] = useState([])
+    const[producto,setProducto]=useState ({})
+    const[cargando,setcargando] = useState([true])
 
     useEffect( () => {
         const pedido = new Promise((res) =>{
@@ -63,8 +59,8 @@ const ItemDetailContainer = ({greeting})=>{
         }) 
         pedido
         .then(()=>{
-            console.log("Termine el pedido bien!")
-            setcargando()
+            setcargando(false)
+            setProducto(ProductsDatabase)
         })
     },[])
 
@@ -76,10 +72,10 @@ const ItemDetailContainer = ({greeting})=>{
     {
         return (
                 <>
-
-                <ItemDetail items = {ProductsDatabase} />
-                
-                
+                {/* <ItemDetail items = {ProductsDatabase} /> */}
+                    <ItemDetail key={ProductsDatabase[0].id}
+                    description={ProductsDatabase[0].description} />
+                    
                 </>
                 
         )

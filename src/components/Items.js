@@ -1,16 +1,23 @@
-// import Items from "./ItemCount"
+import {Link, useNavigate }  from "react-router-dom"
 
-const Items = ({id, title,price,pictureUrl})=>{
-    const MostrarDescription  = () => {
-        // console.log({description})
+const Items = ({item})=>{
+
+    const navigate = useNavigate()
+    
+    const handleClick = () =>{
+        navigate (`/item/${item.id}`)
     }
+
     return (
             <>
-                <div id="Items" key={id} onClick = {MostrarDescription}>
-                    <img src= {pictureUrl} alt="" />
-                    <h3>{title}</h3>
-                    <br />
-                    <p> Precio: {price} </p> 
+                <div id="Items" key={item.id} className = "Items">
+                    <img src= {item.pictureUrl} alt="" />
+                    <h3>{item.title}</h3>
+                    <p> Precio: {item.price} </p> 
+                    <button onClick = {handleClick}>
+                    Ver detalle 
+                    </button>
+                    
                 </div>
             </>
             
