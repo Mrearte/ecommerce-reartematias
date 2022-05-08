@@ -21,7 +21,8 @@ const ProductsDatabase = [
         id: 3, 
         title: 'Product 3', 
         price: 53,
-        pictureUrl:"../imagenes/productos/producto1.png",description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
+        pictureUrl:"../imagenes/productos/producto1.png",
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
 
     }, 
     {
@@ -46,7 +47,17 @@ const ItemListContainer = ({greeting})=>{
     const[cargando,setcargando] = useState([])
     const {nombreCategoria} = useParams()
 
+
     useEffect( () => {
+
+        if(nombreCategoria == undefined){
+            console.log("Pido productos")
+        } else 
+        {
+            console.log("Prido los productos de la categoria:", nombreCategoria)
+        }
+
+
         const pedido = new Promise((res) =>{
             setTimeout(() => {
                 res(ProductsDatabase)

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 // import ItemCount from "./ItemCount"
 import ItemDetail from "./ItemDetail"
 import Items from "./Items"
@@ -49,20 +50,28 @@ const ProductsDatabase = [
 const ItemDetailContainer = ({greeting})=>{
     const[producto,setProducto]=useState ({})
     const[cargando,setcargando] = useState([true])
+    const {id} = useParams()
 
     useEffect( () => {
+        
+        const resultadoFiltro = ProductsDatabase.filter((filtroProducto)=>{            
+                return filtroProducto.id == id
+            })[0]
+        setProducto(resultadoFiltro)
+        setcargando(false)
+        
         const pedido = new Promise((res) =>{
             setTimeout(() => {
-                res(ProductsDatabase)
+                res(resultadoFiltro)
             },2000)
             
         }) 
         pedido
         .then(()=>{
             setcargando(false)
-            setProducto(ProductsDatabase)
+            setProducto(resultadoFiltro)
         })
-    },[])
+        },[])
 
     if (cargando){
         return (
@@ -72,16 +81,19 @@ const ItemDetailContainer = ({greeting})=>{
     {
         return (
                 <>
-                {/* <ItemDetail items = {ProductsDatabase} /> */}
-                    <ItemDetail key={ProductsDatabase[0].id}
-                    description={ProductsDatabase[0].description} />
+                <ItemDetail key={producto.id}
+                    title = {producto.title}
+                    description={producto.title}
+                    pictureUrl = {producto.pictureUrl}
+                    price = {producto.price}
+                    />
                     
                 </>
                 
         )
     }
-}
 
+}
 export default ItemDetailContainer
 
 

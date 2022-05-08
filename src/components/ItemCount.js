@@ -2,17 +2,16 @@
 import {useState} from "react"
 
 
-const ItemCount  = ({stock, initial, onAdd}) => {
+const ItemCount  = ({stock, initial, onAdd ,onClick}) => {
     const [contador,setContador]  = useState(parseInt(initial))
 
-
-    const BtnSuma = () =>{
-            if (contador >= stock) {
-                console.log("Supera el stock permitido")
-        } else {
-            setContador(contador + 1)
-            console.log(contador)
-        }
+    const handleClick = () =>{
+        // onClick()
+        if (contador >= stock) {
+            console.log("Supera el stock permitido")
+    } else {
+        setContador(contador + 1)
+    }
     }
 
     const BtnResta = () =>{
@@ -21,8 +20,8 @@ const ItemCount  = ({stock, initial, onAdd}) => {
     }
 
 
-    const BtnConfirma = () => {
-        onAdd(contador)
+    const handleConfirma = () => {
+        onClick(contador)
         console.log(contador)
     }
     return (
@@ -30,11 +29,15 @@ const ItemCount  = ({stock, initial, onAdd}) => {
         <div id = "Botonera">
 
             <div>
-                <button onClick={BtnResta} id ="BtnResta" > - </button>
+                {/* <button onClick={BtnResta} id ="BtnResta" > - </button>
                 <input type="number" name="" id="" value = {contador}/>
-                <button onClick={BtnSuma} id ="BtnSuma"> + </button>
+                <button onClick={BtnSuma} id ="BtnSuma"> + </button> */}
+
             </div>
-            <button onClick={BtnConfirma} >Agregar al carrito</button>
+            <button onClick={handleClick}>+</button>
+            <span>Cantidad: {contador}</span>
+            <button onClick={BtnResta} id ="BtnResta" >-</button>
+            <button onClick={handleConfirma} >Agregar al carrito</button>
         </div>        
     )
 
