@@ -81,11 +81,7 @@ const ItemDetailContainer = ({greeting})=>{
     {
         return (
                 <>
-                <ItemDetail key={producto.id}
-                    title = {producto.title}
-                    description={producto.title}
-                    pictureUrl = {producto.pictureUrl}
-                    price = {producto.price}
+                <ItemDetail producto={producto}
                     />
                     
                 </>

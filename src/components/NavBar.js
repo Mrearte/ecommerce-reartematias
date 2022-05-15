@@ -10,7 +10,7 @@ const NavBar = (props) => {
   if(props.footer){
     return (
       <nav className="nav">
-        <Link to="#" className="nav__link"><CartWidget/></Link>
+        <CartWidget/>
         <Link to="/Login" className="nav__link">Login</Link>
         <Link to="Registrarte" className="nav__link">Registrarte</Link>
       </nav>
@@ -18,7 +18,7 @@ const NavBar = (props) => {
   }else{
     return(
       <nav className="nav">
-        <Link to="#" className="nav__link"><CartWidget/></Link>
+        <CartWidget/>
         <Link to="/category/electronicos" className="nav__link">electronicos</Link>
         <Link to="/category/textil" className="nav__link">textil</Link>
       </nav>

@@ -1,24 +1,27 @@
 import ItemCount from "./ItemCount"
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { contexto } from "./CartContext/CartContext"
 
-
-const ItemDetail = ({key, title, description, pictureUrl, price})=>{
+const ItemDetail = ({producto})=>{
 
     const[cantidad, setcantidad] = useState('') 
 
-    const handleClick = (a) => {
-        setcantidad(a)
+    const {addItem} = useContext(contexto)
 
+    const handleClick = (cantidad_total) => {
+        setcantidad(cantidad_total)
+        addItem(producto,cantidad_total)
     }
     console.log("cantidad:" + cantidad)
     return (
-            <div id = 'ItemDetail' key = {key}> 
-                <h2>{title}</h2>
-                <img src={pictureUrl} alt="" />
-                <p>Descripcion del producto: {description} </p> 
-                <p>Precio: <span>{price}</span></p>    
+            <div id = 'ItemDetail' key = {producto.key}> 
+                <h2>{producto.title}</h2>
+                <img src={producto.pictureUrl} alt="" />
+                <p>Descripcion del producto: {producto.description} </p> 
+                <p>Precio: <span>{producto.price}</span></p>    
                 {/* <button onClick={handleClick}>click</button> */}
                 <ItemCount onClick = {handleClick} initial = {1} stock = {5}/>
+                
             </div>
             
     )

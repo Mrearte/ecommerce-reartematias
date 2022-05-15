@@ -13,7 +13,7 @@ const Main = () => {
         <Route path="/category/:nombreCategoria" element = {<ItemListContainer />} /> 
         {/* <Route></Route> */}
 
-        {/* <Route path="/carrito" element = {<Carrito></Carrito>}></Route> */}
+        <Route path="/carrito" element = {<Carrito/>}></Route>
       </Routes>
 
     </main>
