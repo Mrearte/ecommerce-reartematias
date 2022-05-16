@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
 import { contexto } from "./CartContext/CartContext"
 import Cart from "./Cart"
+import { db } from "../firebase"
 
 const Carrito = () => { 
 

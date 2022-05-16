@@ -24,7 +24,6 @@ const ItemCount  = ({stock, initial, onAdd ,onClick}) => {
 
     const handleConfirma = () => {
         onClick(contador)
-        console.log(contador)
     }
     return (
 

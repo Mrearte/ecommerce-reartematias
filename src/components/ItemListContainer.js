@@ -1,54 +1,52 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import ItemList from "./ItemList"
- 
-const ProductsDatabase = [
-    {
-        id: 1, 
-        title: 'Product 1', 
-        price: 99,
-        pictureUrl:"../imagenes/productos/producto1.png",
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
-    }, 
-    {
-        id: 2, 
-        title: 'Product 2', 
-        price: 25,
-        pictureUrl:"../imagenes/productos/producto1.png",
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
-    }, 
-    {
-        id: 3, 
-        title: 'Product 3', 
-        price: 53,
-        pictureUrl:"../imagenes/productos/producto1.png",
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
+import { db } from "../firebase"
+import { collection, getDoc, doc, addDoc, getDocs , query} from "firebase/firestore"
 
-    }, 
-    {
-        id: 4, 
-        title: 'Product 4', 
-        price: 990,
-        pictureUrl:"../imagenes/productos/producto1.png",
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
 
-    }, 
-    {
-        id: 5, 
-        title: 'Product 5', 
-        price: 959,
-        pictureUrl:"../imagenes/productos/producto1.png",
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
-    }, 
-]
 
 
 const ItemListContainer = ({greeting})=>{
     const[cargando,setcargando] = useState([])
+    const [productos, setProductos]= useState([]) 
     const {nombreCategoria} = useParams()
 
 
     useEffect( () => {
+
+        const Collectionprod = collection(db,"Productos")
+
+
+        const consulta = getDocs(Collectionprod)
+        consulta
+        .then ((resultado)=>{
+            // console.log(resultado.docs)
+            const productos = resultado.docs.map(doc=>{
+                const productwId = {
+                    ...doc.data(),
+                    id: doc.id
+                }
+
+                return productwId
+                // console.log(doc.id)
+                // console.log(doc.data())
+            })
+
+            setProductos(productos)
+            // console.log(productos)
+
+        })
+
+        .catch (()=>{
+
+        })
+        .finally  (()=>{})
+
+        console.log(consulta)
+
+
+
 
         if(nombreCategoria == undefined){
             console.log("Pido productos")
@@ -60,7 +58,7 @@ const ItemListContainer = ({greeting})=>{
 
         const pedido = new Promise((res) =>{
             setTimeout(() => {
-                res(ProductsDatabase)
+                res(productos)
             },2000)
             
         }) 
@@ -83,7 +81,7 @@ const ItemListContainer = ({greeting})=>{
                 {/* {greeting} */}
                 {/* <ItemCount stock = "5" initial = "1" onAdd = {onAdd}  /> */}
                 
-                <ItemList items = {ProductsDatabase} />
+                <ItemList items = {productos} />
                 
                 
                 </>

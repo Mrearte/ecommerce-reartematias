@@ -3,49 +3,9 @@ import { useParams } from "react-router-dom"
 // import ItemCount from "./ItemCount"
 import ItemDetail from "./ItemDetail"
 import Items from "./Items"
- 
-const ProductsDatabase = [
-    {
-        id: 1, 
-        title: 'Product 1', 
-        price: 99,
-        pictureUrl:"../imagenes/productos/producto1.png",
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
-    }, 
-    {
-        id: 2, 
-        title: 'Product 2', 
-        price: 25,
-        pictureUrl:"../imagenes/productos/producto1.png",
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
+ import { db } from "../firebase"
 
-    }, 
-    {
-        id: 3, 
-        title: 'Product 3', 
-        price: 53,
-        pictureUrl:"../imagenes/productos/producto1.png",
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
-
-    }, 
-    {
-        id: 4, 
-        title: 'Product 4', 
-        price: 990,
-        pictureUrl:"../imagenes/productos/producto1.png",
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
-
-    }, 
-    {
-        id: 5, 
-        title: 'Product 5', 
-        price: 959,
-        pictureUrl:"../imagenes/productos/producto1.png",
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
-        
-    }, 
-]
-
+ import { collection, getDoc, doc, addDoc, getDocs , query} from "firebase/firestore"
 
 const ItemDetailContainer = ({greeting})=>{
     const[producto,setProducto]=useState ({})
@@ -54,22 +14,53 @@ const ItemDetailContainer = ({greeting})=>{
 
     useEffect( () => {
         
-        const resultadoFiltro = ProductsDatabase.filter((filtroProducto)=>{            
+
+
+        const Collectionprod = collection(db,"Productos")
+
+
+        const consulta = getDocs(Collectionprod)
+        consulta
+        .then ((resultado)=>{
+            // console.log(resultado.docs)
+            const producto = resultado.docs.map(doc=>{
+                const productwId = {
+                    ...doc.data(),
+                    id: doc.id
+                }
+            return productwId
+            })
+
+            setProducto(producto)
+            const resultadoFiltro = producto.filter((filtroProducto)=>{            
                 return filtroProducto.id == id
             })[0]
-        setProducto(resultadoFiltro)
-        setcargando(false)
+            setProducto(resultadoFiltro)
+            setcargando(false)
+        })
+
+
+
+
+        .catch (()=>{
+
+        })
+        .finally  (()=>{})
+
+
+   
+        
         
         const pedido = new Promise((res) =>{
             setTimeout(() => {
-                res(resultadoFiltro)
+                res(producto)
             },2000)
             
         }) 
         pedido
         .then(()=>{
             setcargando(false)
-            setProducto(resultadoFiltro)
+            // setProducto(producto)
         })
         },[])
 

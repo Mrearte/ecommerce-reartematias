@@ -12,7 +12,7 @@ const MiCustomProvider = ({children}) => {
     const [carrito, setCarrito] = useState([])
     const [preciototal, setpreciototal] = useState(0)
     const [cantidadtotal, setcantidadtotal] = useState(0)
-    
+    console.log(`previa , ${cantidadtotal}`)
 
     const addItem = ( item, quantity ) => {
         //si ya esta en el carrito, lo busco y le sumo la cantidad
@@ -22,21 +22,27 @@ const MiCustomProvider = ({children}) => {
                 if (element.item.id === item.id){
                     element.quantity = element.quantity + quantity;
                 }
+                console.log(newCart)
+                setCarrito(newCart)
+                setcantidadtotal(cantidadtotal + item.quantity )
+                setpreciototal(preciototal + (item.quantity * item.price) )
+                console.log(`item id , ${cantidadtotal}`)
             }
-            setCarrito(newCart)
-            cantTotal()
 
-            
         } else {
             setCarrito([
                 ...carrito,
                 {
                     item: item,
                     quantity: quantity
+                    
                 }
                 
-            ])
-            cantTotal()
+            ])     
+
+            setcantidadtotal(cantidadtotal + quantity )
+            setpreciototal(preciototal + (quantity * item.price) )
+            console.log(`item id , ${cantidadtotal}`)
         }
     }
 
@@ -47,7 +53,7 @@ const MiCustomProvider = ({children}) => {
     const removeItem = ( id ) => {
         const newCart = [...carrito].map(element => element.id !== id);
         setCarrito(newCart);
-        cantTotal()
+        // cantTotal()
     }
 
     const clearCart = () => {
@@ -56,11 +62,11 @@ const MiCustomProvider = ({children}) => {
 
 
 // al ejecutarlo me da lo siguiente 0[object Object]
-        const cantTotal = () => 
-        { let sumaTotal = carrito.reduce((acc,el)=> acc.quantity + el.quantity)
-            setcantidadtotal(cantidadtotal + sumaTotal)
-            console.log (cantidadtotal)
-        }
+        // const cantTotal = () => 
+        // { let sumaTotal = carrito.reduce((acc,el)=> acc.quantity + el.quantity)
+        //     setcantidadtotal(cantidadtotal + sumaTotal)
+        //     console.log (cantidadtotal)
+        // }
 
 
 
@@ -69,7 +75,7 @@ const MiCustomProvider = ({children}) => {
     const valorContext = 
     {
         cantidadtotal,
-        preciototal:0,
+        preciototal,
         carrito: carrito,
         addItem,
         isInCart,
