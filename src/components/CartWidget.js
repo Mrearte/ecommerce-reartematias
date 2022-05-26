@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { useContext } from "react"
 import {contexto} from "./CartContext/CartContext"
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 
 
@@ -10,9 +11,7 @@ const {cantidadtotal} = useContext(contexto)
 
     return (
     <Link to="/carrito">
-    <i className="fa-solid fa-bag-shopping">
-        shopping-cart 
-    </i>
+    <ShoppingCartIcon></ShoppingCartIcon>
     {cantidadtotal}
     </Link>
     ) 

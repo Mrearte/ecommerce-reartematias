@@ -51,7 +51,7 @@ const MiCustomProvider = ({children}) => {
     }
 
     const removeItem = ( id ) => {
-        const newCart = [...carrito].map(element => element.id !== id);
+        const newCart = [...carrito].map(element => element.id != id);
         setCarrito(newCart);
         // cantTotal()
     }

@@ -2,7 +2,9 @@
 import {useState} from "react"
 import {Link,NavLink} from "react-router-dom"
 
-const ItemCount  = ({stock, initial, onAdd ,onClick}) => {
+const ItemCount  = ({stock, initial, onClick}) => {
+
+
 
     // tengo que mandar la info del carrito 1:27:58 
     const [contador,setContador]  = useState(parseInt(initial))
@@ -28,17 +30,10 @@ const ItemCount  = ({stock, initial, onAdd ,onClick}) => {
     return (
 
         <div id = "Botonera">
-
-            <div>
-                {/* <button onClick={BtnResta} id ="BtnResta" > - </button>
-                <input type="number" name="" id="" value = {contador}/>
-                <button onClick={BtnSuma} id ="BtnSuma"> + </button> */}
-
-            </div>
-            <button onClick={handleClick}>+</button>
+            <button onClick={() => handleClick()}>+</button>
             <span>Cantidad: {contador}</span>
-            <button onClick={BtnResta} id ="BtnResta" >-</button>
-            <button onClick={handleConfirma} >Agregar al carrito 
+            <button onClick={() => BtnResta()} id ="BtnResta" >-</button>
+            <button onClick={() => handleConfirma() }  >Agregar al carrito 
                 </button>
         </div>        
     )
