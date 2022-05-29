@@ -19,8 +19,8 @@ const NavBar = (props) => {
     return(
       <nav className="nav">
         <CartWidget/>
-        <Link to="/category/electronicos" className="nav__link">electronicos</Link>
-        <Link to="/category/textil" className="nav__link">textil</Link>
+        <Link to="/category/Cesto" className="nav__link">Cesto</Link>
+        <Link to="/category/Almohadon" className="nav__link">Almohadon</Link>
       </nav>
     )
   }

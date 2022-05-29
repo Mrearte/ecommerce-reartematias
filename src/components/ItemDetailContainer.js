@@ -2,10 +2,10 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 // import ItemCount from "./ItemCount"
 import ItemDetail from "./ItemDetail"
-import Items from "./Items"
+
  import { db } from "../firebase"
 
- import { collection, getDoc, doc, addDoc, getDocs , query} from "firebase/firestore"
+ import { collection, getDoc, doc, addDoc, getDocs , query, where} from "firebase/firestore"
 
 const ItemDetailContainer = ({greeting})=>{
     const[producto,setProducto]=useState ({})
@@ -17,6 +17,7 @@ const ItemDetailContainer = ({greeting})=>{
 
 
         const Collectionprod = collection(db,"Productos")
+
 
 
         const consulta = getDocs(Collectionprod)

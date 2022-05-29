@@ -24,8 +24,8 @@ const MiCustomProvider = ({children}) => {
                 }
                 console.log(newCart)
                 setCarrito(newCart)
-                setcantidadtotal(cantidadtotal + item.quantity )
-                setpreciototal(preciototal + (item.quantity * item.price) )
+                setcantidadtotal(cantidadtotal + quantity )
+                setpreciototal(preciototal + (quantity * item.price) )
                 console.log(`item id , ${cantidadtotal}`)
             }
 
@@ -51,7 +51,7 @@ const MiCustomProvider = ({children}) => {
     }
 
     const removeItem = ( id ) => {
-        const newCart = [...carrito].map(element => element.id != id);
+        const newCart = [...carrito].filter(element => element.item.id != id);
         setCarrito(newCart);
         // cantTotal()
     }
@@ -59,17 +59,6 @@ const MiCustomProvider = ({children}) => {
     const clearCart = () => {
         setCarrito([])
     }
-
-
-// al ejecutarlo me da lo siguiente 0[object Object]
-        // const cantTotal = () => 
-        // { let sumaTotal = carrito.reduce((acc,el)=> acc.quantity + el.quantity)
-        //     setcantidadtotal(cantidadtotal + sumaTotal)
-        //     console.log (cantidadtotal)
-        // }
-
-
-
 
 
     const valorContext = 

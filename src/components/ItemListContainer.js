@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import ItemList from "./ItemList"
 import { db } from "../firebase"
-import { collection, getDoc, doc, addDoc, getDocs , query , where} from "firebase/firestore"
+import { collection, getDoc, doc, addDoc, getDocs , query , where,getFirestore} from "firebase/firestore"
 
 
 
@@ -17,43 +17,74 @@ const ItemListContainer = ({greeting})=>{
 
         const Collectionprod = collection(db,"Productos")
 
-
-        const consulta = getDocs(Collectionprod)
-        consulta
-        .then ((resultado)=>{
-            // console.log(resultado.docs)
-            const productos = resultado.docs.map(doc=>{
-                const productwId = {
-                    ...doc.data(),
-                    id: doc.id
-                }
-
-                return productwId
-                // console.log(doc.id)
-                // console.log(doc.data())
-            })
-
-            setProductos(productos)
-            // console.log(productos)
-
-        })
-
-        .catch (()=>{
-
-        })
-        .finally  (()=>{})
-
-        console.log(consulta)
-
-
-
-
         if(nombreCategoria == undefined){
-            console.log("Pido productos")
+            const  consulta = getDocs(Collectionprod)
+            
+            consulta
+            .then ((resultado)=>{
+                // console.log(resultado.docs)
+                const productos = resultado.docs.map(doc=>{
+                    const productwId = {
+                        ...doc.data(),
+                        id: doc.id
+                    }
+    
+                    return productwId
+                    // console.log(doc.id)
+                    // console.log(doc.data())
+                })
+    
+                setProductos(productos)
+                // console.log(productos)
+    
+            })
+    
+            .catch (()=>{
+    
+            })
+            .finally  (()=>{})
+    
+    
+
+
         } else 
         {
-            console.log("Prido los productos de la categoria:", nombreCategoria)
+            const queryWhere = query(Collectionprod, where("category","==", nombreCategoria ))
+            const consulta = getDocs(queryWhere)
+
+            consulta
+            .then ((resultado)=>{
+                // console.log(resultado.docs)
+                const productos = resultado.docs.map(doc=>{
+                    const productwId = {
+                        ...doc.data(),
+                        id: doc.id
+                    }
+    
+                    return productwId
+                    // console.log(doc.id)
+                    // console.log(doc.data())
+                })
+    
+                setProductos(productos)
+                // console.log(productos)
+    
+            })
+    
+            .catch (()=>{
+    
+            })
+            .finally  (()=>{})
+    
+    
         }
+
+        
+
+        
+
+
+
 
 
         const pedido = new Promise((res) =>{
@@ -90,8 +121,4 @@ const ItemListContainer = ({greeting})=>{
     }
 }
 
-export default ItemListContainer
-
-
-
-
+    export default ItemListContainer

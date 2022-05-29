@@ -14,22 +14,37 @@ const ItemDetail = ({producto})=>{
         setcantidad(cantidad_total)
         addItem(producto,cantidad_total)
         setdisabled(true)
+
         console.log(disabled)
         
     }
 
     
-    console.log("cantidad:" + cantidad)
-    return (
+
+    if (disabled == true ){
+        return (
             <div id = 'ItemDetail' key = {producto.key}> 
                 <h2>{producto.title}</h2>
                 <img src={producto.pictureUrl} alt="" />
                 <p>Descripcion del producto: {producto.description} </p> 
-                <p>Precio: <span>{producto.price}</span></p>    
-                <ItemCount onClick = {handleClick} initial = {1} stock = {5} disabled = {disabled} />               
+                <p>Precio: <span>{producto.price}</span></p>
+                <button>Terminar compra</button>      
             </div>
             
     )
+    } else {
+        return (
+            <div id = 'ItemDetail' key = {producto.key}> 
+                <h2>{producto.title}</h2>
+                <img src={producto.pictureUrl} alt="" />
+                <p>Descripcion del producto: {producto.description} </p> 
+                <p>Precio: <span>{producto.price}</span></p> 
+                <ItemCount onClick = {handleClick} initial = {1} stock = {5} disabled ={disabled} />               
+            </div>
+            
+    )
+    }
+
 }
 
 export default ItemDetail
